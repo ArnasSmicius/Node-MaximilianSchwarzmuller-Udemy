@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-});
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-app.listen(port, () => {
-    console.log(`Server listening on port: ${port}`)
-})
+app.use(adminRoutes);
+app.use(shopRoutes);
+
+app.listen(3000);

@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import IndexPage from "../pages/IndexPage";
-import AddProductPage from "../pages/AddProductPage";
+import Index from "../components/Index/Index";
+import AddProduct from "../components/AddProduct/AddProduct";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<IndexPage />} />
-        <Route path="/admin/add-product" element={<AddProductPage />} />
+        <Route path="/" element={<Index />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
       </Routes>
     </BrowserRouter>
   );

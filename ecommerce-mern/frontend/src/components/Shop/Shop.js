@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import { getAllProducts } from "../../services/product";
 import Product from "./Product";
 import Grid from "../UI/Grid";
 
 const Shop = () => {
-  const [products, setProducts] = useState([
-    { title: "First product" },
-    { title: "Second product" },
-  ]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getAllProducts()
+      .then((response) => setProducts(response))
+      .catch((error) => console.error(error));
+  });
 
   const productList = (products) => {
     return (
       <Grid>
         {products.map((product) => (
-          <Product product={product} />
+          <Product key={product.title} product={product} />
         ))}
       </Grid>
     );

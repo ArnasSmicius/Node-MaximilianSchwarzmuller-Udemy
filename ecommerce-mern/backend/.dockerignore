@@ -2,5 +2,6 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 .gitignore
+data/
 
 node_modules

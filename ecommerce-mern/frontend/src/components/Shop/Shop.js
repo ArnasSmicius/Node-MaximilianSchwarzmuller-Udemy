@@ -1,7 +1,7 @@
 import React from "react";
 
-const Index = () => {
+const Shop = () => {
   return <h1>Welcome from Index page</h1>;
 };
 
-export default Index;
+export default Shop;

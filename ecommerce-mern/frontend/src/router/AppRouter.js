@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Shop from "../components/Shop/Shop";
-import AddProduct from "../components/AddProduct/AddProduct";
-import NoPage from "../components/NoPage/NoPage";
-import Navigation from "../components/Navigation/Navigation";
+import ProductList from "../features/shop/product-list/ProductList";
+import AddProduct from "../features/admin/add-product/AddProduct";
+import NoPage from "../features/no-page/NoPage";
+import Navigation from "../features/navigation/Navigation";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Navigation />
       <Routes>
-        <Route path="/" element={<Shop />} />
+        <Route path="/" element={<ProductList />} />
         <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="*" element={<NoPage />} />
       </Routes>

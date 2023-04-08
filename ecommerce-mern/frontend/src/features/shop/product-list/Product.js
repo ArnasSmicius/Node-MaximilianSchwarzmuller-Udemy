@@ -1,8 +1,8 @@
 import React from "react";
 
 import styles from "./Product.module.css";
-import Card from "../UI/Card";
-import Button from "../UI/Button";
+import Card from "../../../components/Card/Card";
+import Button from "../../../components/Button/Button";
 
 const Product = (props) => {
   return (

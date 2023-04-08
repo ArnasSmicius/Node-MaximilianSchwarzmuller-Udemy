@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./AddProduct.module.css";
 
-import { addProduct } from "../../services/product";
+import { addProduct } from "../../../services/product";
 
 const AddProduct = () => {
   const navigate = useNavigate();

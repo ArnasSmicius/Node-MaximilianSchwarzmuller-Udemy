@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { getAllProducts } from "../../services/product";
+import { getAllProducts } from "../../../services/product";
 import Product from "./Product";
-import Grid from "../UI/Grid";
+import Grid from "../../../components/Grid/Grid";
 
-const Shop = () => {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ProductList;

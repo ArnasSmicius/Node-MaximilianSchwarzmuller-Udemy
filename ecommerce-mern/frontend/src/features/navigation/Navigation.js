@@ -20,12 +20,38 @@ const Navigation = () => {
           </li>
           <li className={styles["main-header__item"]}>
             <Link
+              className={path === "/products" ? styles["active"] : undefined}
+              to="/products"
+            >
+              Products
+            </Link>
+          </li>
+          <li className={styles["main-header__item"]}>
+            <Link
+              className={path === "/cart" ? styles["active"] : undefined}
+              to="/cart"
+            >
+              Cart
+            </Link>
+          </li>
+          <li className={styles["main-header__item"]}>
+            <Link
               className={
                 path === "/admin/add-product" ? styles["active"] : undefined
               }
               to="/admin/add-product"
             >
               Add Product
+            </Link>
+          </li>
+          <li className={styles["main-header__item"]}>
+            <Link
+              className={
+                path === "/admin/products" ? styles["active"] : undefined
+              }
+              to="/admin/products"
+            >
+              Admin Products
             </Link>
           </li>
         </ul>

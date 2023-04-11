@@ -5,6 +5,13 @@ import Card from "../../../components/Card/Card";
 import Button from "../../../components/Button/Button";
 
 const Product = (props) => {
+  const sellerActions = <Button>Add to Cart</Button>;
+
+  const adminActions = [
+    <Button onClick={props.onClickEdit}>Edit</Button>,
+    <Button>Delete</Button>,
+  ];
+
   return (
     <Card className={styles["product-item"]}>
       <header className={styles["card__header"]}>
@@ -20,7 +27,7 @@ const Product = (props) => {
         </p>
       </div>
       <div className={styles["card__actions"]}>
-        <Button>Add to Cart</Button>
+        {props.adminActions ? adminActions : sellerActions}
       </div>
     </Card>
   );

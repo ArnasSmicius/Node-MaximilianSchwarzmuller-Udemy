@@ -5,7 +5,14 @@ import Card from "../../../components/Card/Card";
 import Button from "../../../components/Button/Button";
 
 const Product = (props) => {
-  const sellerActions = <Button>Add to Cart</Button>;
+  const detailsClickHandler = (event) => {
+    props.onClickDetails(props.product.id);
+  };
+
+  const sellerActions = [
+    <Button onClick={detailsClickHandler}>Details</Button>,
+    <Button>Add to Cart</Button>,
+  ];
 
   const adminActions = [
     <Button onClick={props.onClickEdit}>Edit</Button>,

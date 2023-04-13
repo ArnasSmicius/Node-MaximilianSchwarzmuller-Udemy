@@ -9,6 +9,7 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = Math.floor(Math.random() * 9999);
     products.push(this);
   }
 

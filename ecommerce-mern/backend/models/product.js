@@ -16,4 +16,8 @@ module.exports = class Product {
   static fetchAll() {
     return products;
   }
+
+  static findById(id) {
+    return products.find((product) => product.id == id);
+  }
 };

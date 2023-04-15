@@ -1,5 +1,10 @@
 export async function getAllProducts() {
-  const response = await fetch("http://localhost:3001");
+  const response = await fetch("http://localhost:3001/products/");
+  return response.json();
+}
+
+export async function getProduct(productId) {
+  const response = await fetch(`http://localhost:3001/products/${productId}`);
   return response.json();
 }
 

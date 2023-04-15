@@ -16,3 +16,12 @@ exports.getProducts = (req, res, next) => {
   const products = Product.fetchAll();
   res.send(products);
 };
+
+exports.getProduct = (req, res, next) => {
+  const product = Product.findById(req.params.productId);
+  if (product === undefined) {
+    res.sendStatus(404);
+  } else {
+    res.send(product);
+  }
+};

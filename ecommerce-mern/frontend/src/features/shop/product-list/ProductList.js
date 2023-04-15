@@ -13,7 +13,7 @@ const ProductList = () => {
     getAllProducts()
       .then((response) => setProducts(response))
       .catch((error) => console.error(error));
-  });
+  }, []);
 
   const detailsClickHandler = (id) => {
     navigate(`/products/${id}`);

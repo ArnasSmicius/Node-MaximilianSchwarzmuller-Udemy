@@ -9,9 +9,13 @@ const Product = (props) => {
     props.onClickDetails(props.product.id);
   };
 
+  const addToCartClickHandler = (event) => {
+    props.onClickAddToCard(props.product.id);
+  };
+
   const sellerActions = [
     <Button onClick={detailsClickHandler}>Details</Button>,
-    <Button>Add to Cart</Button>,
+    <Button onClick={addToCartClickHandler}>Add to Cart</Button>,
   ];
 
   const adminActions = [

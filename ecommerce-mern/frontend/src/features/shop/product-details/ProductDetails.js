@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "../../../services/product";
 import styles from "./ProductDetails.module.css";
 import NoPage from "../../no-page/NoPage";
 import Button from "../../../components/Button/Button";
+import { addToCart } from "../../../services/cart";
 
 const ProductDetails = (props) => {
+  const navigate = useNavigate();
   const params = useParams();
   const [product, setProduct] = useState();
   const [pageNotFound, setPageNotFound] = useState(false);
@@ -19,6 +21,12 @@ const ProductDetails = (props) => {
       .catch((error) => setPageNotFound(true));
   }, []);
 
+  const addToCartHandler = () => {
+    addToCart(params.productId)
+      .then(() => navigate("/cart"))
+      .catch((err) => console.log(err));
+  };
+
   const content = () => {
     return (
       <main className={styles.centered}>
@@ -29,7 +37,7 @@ const ProductDetails = (props) => {
         </div>
         <h2>{product.price}</h2>
         <p>{product.description}</p>
-        <Button>Add to Cart</Button>
+        <Button onClick={addToCartHandler}>Add to Cart</Button>
       </main>
     );
   };

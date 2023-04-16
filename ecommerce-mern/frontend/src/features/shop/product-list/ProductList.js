@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "../../../services/product";
 import Product from "./Product";
 import Grid from "../../../components/Grid/Grid";
+import { addToCart } from "../../../services/cart";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -19,6 +20,12 @@ const ProductList = () => {
     navigate(`/products/${id}`);
   };
 
+  const addToCartClickHandler = (productId) => {
+    addToCart(productId).then(() => {
+      navigate("/cart");
+    });
+  };
+
   const productList = (products) => {
     return (
       <Grid>
@@ -27,6 +34,7 @@ const ProductList = () => {
             key={product.title}
             product={product}
             onClickDetails={detailsClickHandler}
+            onClickAddToCard={addToCartClickHandler}
           />
         ))}
       </Grid>

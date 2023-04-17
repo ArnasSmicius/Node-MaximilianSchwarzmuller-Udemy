@@ -15,8 +15,8 @@ const Products = () => {
       .catch((error) => console.error(error));
   });
 
-  const editHandler = () => {
-    navigate("/admin/edit-product");
+  const editHandler = (productId) => {
+    navigate(`/admin/edit-product/${productId}`);
   };
 
   const productList = (products) => {

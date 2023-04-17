@@ -13,13 +13,17 @@ const Product = (props) => {
     props.onClickAddToCard(props.product.id);
   };
 
+  const editHandler = (event) => {
+    props.onClickEdit(props.product.id);
+  };
+
   const sellerActions = [
     <Button onClick={detailsClickHandler}>Details</Button>,
     <Button onClick={addToCartClickHandler}>Add to Cart</Button>,
   ];
 
   const adminActions = [
-    <Button onClick={props.onClickEdit}>Edit</Button>,
+    <Button onClick={editHandler}>Edit</Button>,
     <Button>Delete</Button>,
   ];
 

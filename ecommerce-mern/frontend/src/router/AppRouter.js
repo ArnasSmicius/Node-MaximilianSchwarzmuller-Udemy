@@ -10,6 +10,7 @@ import Checkout from "../features/shop/checkout/Checkout";
 import Products from "../features/admin/products/Products";
 import Orders from "../features/shop/orders/Orders";
 import ProductDetails from "../features/shop/product-details/ProductDetails";
+import EditProduct from "../features/admin/edit-product/EditProduct";
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,10 @@ const AppRouter = () => {
         <Route path="/orders" element={<Orders />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin/add-product" element={<AddProduct />} />
+        <Route
+          path="/admin/edit-product/:productId"
+          element={<EditProduct />}
+        />
         <Route path="/admin/products" element={<Products />} />
         <Route path="*" element={<NoPage />} />
       </Routes>

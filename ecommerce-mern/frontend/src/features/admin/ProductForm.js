@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./ProductForm.module.css";
+import Button from "../../components/Button/Button";
 
 const ProductForm = (props) => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [price, setPrice] = useState(0.0);
   const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    const product = props.product;
+    if (product) {
+      setTitle(product.title);
+      setImageUrl(product.imageUrl);
+      setPrice(product.price);
+      setDescription(product.description);
+    }
+  }, [props.product]);
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
@@ -77,9 +88,9 @@ const ProductForm = (props) => {
             onChange={descriptionChangeHandler}
           />
         </div>
-        <button className={styles.btn} type="submit">
-          Add Product
-        </button>
+        <Button className={styles.btn} type="submit">
+          {props.editMode ? "Update Product" : "Add Product"}
+        </Button>
       </form>
     </main>
   );

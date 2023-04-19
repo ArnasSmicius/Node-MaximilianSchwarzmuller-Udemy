@@ -1,7 +1,8 @@
 const products = [];
 
 module.exports = class Product {
-  constructor(title, imageUrl, description, price) {
+  constructor(id, title, imageUrl, description, price) {
+    this.id = id;
     this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;
@@ -11,6 +12,13 @@ module.exports = class Product {
   save() {
     this.id = Math.floor(Math.random() * 9999);
     products.push(this);
+  }
+
+  update() {
+    const productIndex = products.findIndex((prod) => prod.id == this.id);
+    if (~productIndex) {
+      products[productIndex] = this;
+    }
   }
 
   static fetchAll() {

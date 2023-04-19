@@ -3,12 +3,26 @@ const Product = require("../models/product");
 exports.postAddProduct = (req, res, next) => {
   const requestBody = req.body;
   const product = new Product(
+    null,
     requestBody.title,
     requestBody.imageUrl,
     requestBody.description,
     requestBody.price
   );
   product.save();
+  res.send(product);
+};
+
+exports.editProduct = (req, res, next) => {
+  const requestBody = req.body;
+  const product = new Product(
+    requestBody.id,
+    requestBody.title,
+    requestBody.imageUrl,
+    requestBody.description,
+    requestBody.price
+  );
+  product.update();
   res.send(product);
 };
 

@@ -7,4 +7,6 @@ const router = express.Router();
 // /admin/add-product => POST
 router.post("/add-product", productsController.postAddProduct);
 
+router.put("/edit-product", productsController.editProduct);
+
 module.exports = router;

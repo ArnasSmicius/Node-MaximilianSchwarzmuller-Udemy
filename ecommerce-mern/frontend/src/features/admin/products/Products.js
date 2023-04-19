@@ -13,7 +13,7 @@ const Products = () => {
     getAllProducts()
       .then((response) => setProducts(response))
       .catch((error) => console.error(error));
-  });
+  }, []);
 
   const editHandler = (productId) => {
     navigate(`/admin/edit-product/${productId}`);

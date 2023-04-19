@@ -21,3 +21,18 @@ export async function addProduct(title, imageUrl, description, price) {
   });
   return await response;
 }
+
+export async function editProduct(id, title, imageUrl, description, price) {
+  const response = fetch("http://localhost:3001/admin/edit-product", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: id,
+      title: title,
+      imageUrl: imageUrl,
+      description: description,
+      price: price,
+    }),
+  });
+  return await response;
+}

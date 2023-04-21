@@ -26,6 +26,12 @@ exports.editProduct = (req, res, next) => {
   res.send(product);
 };
 
+exports.deleteProduct = (req, res, next) => {
+  const productId = req.body.id;
+  Product.deleteById([productId]);
+  res.sendStatus(200);
+};
+
 exports.getProducts = (req, res, next) => {
   const products = Product.fetchAll();
   res.send(products);

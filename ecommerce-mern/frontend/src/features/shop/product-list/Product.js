@@ -17,6 +17,10 @@ const Product = (props) => {
     props.onClickEdit(props.product.id);
   };
 
+  const deleteHandler = (event) => {
+    props.onClickDelete(props.product.id);
+  };
+
   const sellerActions = [
     <Button onClick={detailsClickHandler}>Details</Button>,
     <Button onClick={addToCartClickHandler}>Add to Cart</Button>,
@@ -24,7 +28,7 @@ const Product = (props) => {
 
   const adminActions = [
     <Button onClick={editHandler}>Edit</Button>,
-    <Button>Delete</Button>,
+    <Button onClick={deleteHandler}>Delete</Button>,
   ];
 
   return (

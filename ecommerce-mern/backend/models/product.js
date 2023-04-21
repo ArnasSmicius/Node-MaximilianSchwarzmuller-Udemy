@@ -1,4 +1,4 @@
-const products = [];
+let products = [];
 
 module.exports = class Product {
   constructor(id, title, imageUrl, description, price) {
@@ -27,5 +27,9 @@ module.exports = class Product {
 
   static findById(id) {
     return products.find((product) => product.id == id);
+  }
+
+  static deleteById(id) {
+    products = products.filter((product) => product.id != id);
   }
 };

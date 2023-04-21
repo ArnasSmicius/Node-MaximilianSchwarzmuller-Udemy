@@ -36,3 +36,14 @@ export async function editProduct(id, title, imageUrl, description, price) {
   });
   return await response;
 }
+
+export async function deleteProduct(id) {
+  const response = fetch(`http://localhost:3001/admin/delete-product`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: id,
+    }),
+  });
+  return await response;
+}

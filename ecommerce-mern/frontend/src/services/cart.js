@@ -8,3 +8,8 @@ export async function addToCart(productId) {
   });
   return await response;
 }
+
+export async function getCart() {
+  const response = await fetch("http://localhost:3001/cart");
+  return response.json();
+}

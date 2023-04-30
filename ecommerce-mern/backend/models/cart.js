@@ -16,7 +16,6 @@ module.exports = class Cart {
       cart.products = [...cart.products, updatedProduct];
     }
     cart.totalPrice = cart.totalPrice + +productPrice;
-    console.log(cart);
   }
 
   static deleteProduct(id, productPrice) {
@@ -24,6 +23,9 @@ module.exports = class Cart {
     const productQty = product.qty;
     cart.products = cart.products.filter((prod) => prod.id != id);
     cart.totalPrice -= productPrice * productQty;
-    console.log(cart);
+  }
+
+  static getCart() {
+    return cart;
   }
 };

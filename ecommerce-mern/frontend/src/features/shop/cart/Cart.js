@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { getCart } from "../../../services/cart";
+import { getCart, deleteCartProduct } from "../../../services/cart";
+import Button from "../../../components/Button/Button";
 
 const Cart = () => {
   const [cart, setCart] = useState({ products: [] });
 
   useEffect(() => {
+    refreshCart();
+  }, []);
+
+  const refreshCart = () => {
     getCart()
       .then((response) => setCart(response))
       .catch((error) => console.error(error));
-  }, []);
+  };
+
+  const onDeleteHandler = (prodId) => {
+    deleteCartProduct(prodId)
+      .then(() => refreshCart())
+      .catch((error) => console.error(error));
+  };
 
   const products = () => {
     return cart.products.map((prod) => {
       return (
         <li key={prod.productData.key}>
-          {prod.productData.title} ({prod.qty})
+          <p>
+            {prod.productData.title} ({prod.qty})
+          </p>
+          <Button
+            onClick={() => {
+              onDeleteHandler(prod.productData.id);
+            }}
+          >
+            Delete
+          </Button>
         </li>
       );
     });
@@ -22,7 +42,7 @@ const Cart = () => {
 
   return (
     <main>
-      {cart.products.length == 0 && <h1>No Products in Cart!</h1>}
+      {cart.products.length === 0 && <h1>No Products in Cart!</h1>}
       {cart.products.length > 0 && <ul>{products()}</ul>}
     </main>
   );

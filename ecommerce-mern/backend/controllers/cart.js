@@ -18,3 +18,10 @@ exports.getCart = (req, res, next) => {
   const response = { products: cartProducts, totalPrice: cart.totalPrice };
   res.send(response);
 };
+
+exports.deleteCartProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  const product = Product.findById(prodId);
+  Cart.deleteProduct(prodId, product.price);
+  res.sendStatus(200);
+};

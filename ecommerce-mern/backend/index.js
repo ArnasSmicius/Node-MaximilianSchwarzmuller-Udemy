@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const db = require("./util/database");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+
+db.execute("SHOW TABLES;");
 
 app.use(express.json());
 app.use(

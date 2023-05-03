@@ -6,7 +6,7 @@ const db = require("./util/database");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
-db.execute("SHOW TABLES;");
+db.execute("SELECT * FROM products").then().catch();
 
 app.use(express.json());
 app.use(

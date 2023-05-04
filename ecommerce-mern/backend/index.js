@@ -6,7 +6,13 @@ const db = require("./util/database");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
-db.execute("SELECT * FROM products").then().catch();
+db.execute("SELECT * FROM products")
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(express.json());
 app.use(

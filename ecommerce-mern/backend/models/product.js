@@ -1,6 +1,6 @@
-const Cart = require("./cart");
+const db = require("../util/database");
 
-let products = [];
+const Cart = require("./cart");
 
 module.exports = class Product {
   constructor(id, title, imageUrl, description, price) {
@@ -11,29 +11,15 @@ module.exports = class Product {
     this.price = price;
   }
 
-  save() {
-    this.id = Math.floor(Math.random() * 9999);
-    products.push(this);
-  }
+  save() {}
 
-  update() {
-    const productIndex = products.findIndex((prod) => prod.id == this.id);
-    if (~productIndex) {
-      products[productIndex] = this;
-    }
-  }
+  update() {}
 
   static fetchAll() {
-    return products;
+    return db.execute("SELECT * FROM products");
   }
 
-  static findById(id) {
-    return products.find((product) => product.id == id);
-  }
+  static findById(id) {}
 
-  static deleteById(id) {
-    const product = products.find((prod) => prod.id == id);
-    Cart.deleteProduct(id, product.price);
-    products = products.filter((product) => product.id != id);
-  }
+  static deleteById(id) {}
 };

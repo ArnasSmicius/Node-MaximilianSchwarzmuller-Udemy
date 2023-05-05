@@ -33,8 +33,11 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll();
-  res.send(products);
+  const products = Product.fetchAll()
+    .then(([rows, fieldData]) => {
+      res.send(rows);
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getProduct = (req, res, next) => {

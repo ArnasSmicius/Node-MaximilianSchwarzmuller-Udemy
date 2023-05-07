@@ -9,8 +9,12 @@ exports.postAddProduct = (req, res, next) => {
     requestBody.description,
     requestBody.price
   );
-  product.save();
-  res.send(product);
+  product
+    .save()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.editProduct = (req, res, next) => {

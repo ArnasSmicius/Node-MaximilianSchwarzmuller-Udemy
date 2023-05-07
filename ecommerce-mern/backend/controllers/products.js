@@ -45,10 +45,9 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const product = Product.findById(req.params.productId);
-  if (product === undefined) {
-    res.sendStatus(404);
-  } else {
-    res.send(product);
-  }
+  Product.findById(req.params.productId)
+    .then(([rows, fieldData]) => {
+      res.send(rows[0]);
+    })
+    .catch((err) => res.sendStatus(404));
 };

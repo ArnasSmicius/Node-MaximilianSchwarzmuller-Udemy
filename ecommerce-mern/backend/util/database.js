@@ -1,10 +1,8 @@
-const mysql = require("mysql2");
+const Sequelize = require("sequelize");
 
-const pool = mysql.createPool({
+const sequelize = new Sequelize("node-complete", "root", "example", {
+  dialect: "mysql",
   host: "db",
-  user: "root",
-  database: "node-complete",
-  password: "example",
 });
 
-module.exports = pool.promise();
+module.exports = sequelize;

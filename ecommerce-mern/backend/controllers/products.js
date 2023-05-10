@@ -41,9 +41,9 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll()
-    .then(([rows, fieldData]) => {
-      res.send(rows);
+  Product.findAll()
+    .then((products) => {
+      res.send(products);
     })
     .catch((err) => console.log(err));
 };

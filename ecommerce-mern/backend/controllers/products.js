@@ -2,19 +2,23 @@ const Product = require("../models/product");
 
 exports.postAddProduct = (req, res, next) => {
   const requestBody = req.body;
-  const product = new Product(
-    null,
-    requestBody.title,
-    requestBody.imageUrl,
-    requestBody.description,
-    requestBody.price
-  );
-  product
-    .save()
-    .then(([rows]) => {
-      res.send(rows);
+  const title = requestBody.title;
+  const imageUrl = requestBody.imageUrl;
+  const price = requestBody.price;
+  const description = requestBody.description;
+
+  Product.create({
+    title: title,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+  })
+    .then((prod) => {
+      res.send(prod);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.editProduct = (req, res, next) => {

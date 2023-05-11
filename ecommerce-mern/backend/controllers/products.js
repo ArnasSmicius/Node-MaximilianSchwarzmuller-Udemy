@@ -49,9 +49,9 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  Product.findById(req.params.productId)
-    .then(([rows, fieldData]) => {
-      res.send(rows[0]);
+  Product.findByPk(req.params.productId)
+    .then((product) => {
+      res.send(product);
     })
     .catch((err) => res.sendStatus(404));
 };

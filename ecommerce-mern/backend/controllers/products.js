@@ -21,17 +21,17 @@ exports.postAddProduct = (req, res, next) => {
     });
 };
 
-exports.editProduct = (req, res, next) => {
-  const requestBody = req.body;
-  const product = new Product(
-    requestBody.id,
-    requestBody.title,
-    requestBody.imageUrl,
-    requestBody.description,
-    requestBody.price
-  );
-  product.update();
-  res.send(product);
+exports.editProduct = async (req, res, next) => {
+  const product = await Product.findByPk(req.body.id);
+
+  product.title = req.body.title;
+  product.price = req.body.price;
+  product.imageUrl = req.body.imageUrl;
+  product.description = req.body.description;
+
+  const updatedProduct = await product.save();
+
+  res.send(updatedProduct);
 };
 
 exports.deleteProduct = (req, res, next) => {

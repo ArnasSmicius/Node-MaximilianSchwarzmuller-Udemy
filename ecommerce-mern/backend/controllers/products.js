@@ -34,9 +34,10 @@ exports.editProduct = async (req, res, next) => {
   res.send(updatedProduct);
 };
 
-exports.deleteProduct = (req, res, next) => {
+exports.deleteProduct = async (req, res, next) => {
   const productId = req.body.id;
-  Product.deleteById([productId]);
+  const product = await Product.findByPk(productId);
+  await product.destroy();
   res.sendStatus(200);
 };
 

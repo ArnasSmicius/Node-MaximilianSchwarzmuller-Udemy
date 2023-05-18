@@ -6,13 +6,13 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = requestBody.imageUrl;
   const price = requestBody.price;
   const description = requestBody.description;
-
-  Product.create({
-    title: title,
-    price: price,
-    imageUrl: imageUrl,
-    description: description,
-  })
+  req.user
+    .createProduct({
+      title: title,
+      price: price,
+      imageUrl: imageUrl,
+      description: description,
+    })
     .then((prod) => {
       res.send(prod);
     })

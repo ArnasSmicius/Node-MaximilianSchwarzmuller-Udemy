@@ -9,14 +9,26 @@ exports.addToCart = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  const cart = Cart.getCart();
-  const cartProducts = [];
-  cart.products.forEach((prod) => {
-    const product = Product.findById(prod.id);
-    cartProducts.push({ productData: product, qty: prod.qty });
-  });
-  const response = { products: cartProducts, totalPrice: cart.totalPrice };
-  res.send(response);
+  // const cart = Cart.getCart();
+  // const cartProducts = [];
+  // cart.products.forEach((prod) => {
+  //   const product = Product.findById(prod.id);
+  //   cartProducts.push({ productData: product, qty: prod.qty });
+  // });
+  // const response = { products: cartProducts, totalPrice: cart.totalPrice };
+  // res.send(response);
+
+  req.user
+    .getCart()
+    .then((cart) => {
+      return cart
+        .getProducts()
+        .then((products) => {
+          res.send({ products: products });
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.deleteCartProduct = (req, res, next) => {

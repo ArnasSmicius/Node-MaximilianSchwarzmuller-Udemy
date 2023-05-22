@@ -1,10 +1,17 @@
 const Cart = require("../models/cart");
 const Product = require("../models/product");
 
-exports.addToCart = (req, res, next) => {
+exports.addToCart = async (req, res, next) => {
   const productId = req.body.productId;
-  const product = Product.findById(productId);
-  Cart.addProduct(productId, product.price);
+  const cart = await req.user.getCart();
+  const cartProducts = await cart.getProducts({ where: { id: productId } });
+  if (cartProducts.length > 0) {
+    cartProducts[0].cartItem.quantity += 1;
+  } else {
+    const product = await Product.findByPk(productId);
+    cart.addProduct(product, { through: { quantity: 1 } });
+  }
+
   res.sendStatus(200);
 };
 

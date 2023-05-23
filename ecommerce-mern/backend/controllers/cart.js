@@ -6,7 +6,10 @@ exports.addToCart = async (req, res, next) => {
   const cart = await req.user.getCart();
   const cartProducts = await cart.getProducts({ where: { id: productId } });
   if (cartProducts.length > 0) {
-    cartProducts[0].cartItem.quantity += 1;
+    const oldQuantity = cartProducts[0].cartItem.quantity;
+    await cart.addProduct(cartProducts[0], {
+      through: { quantity: oldQuantity + 1 },
+    });
   } else {
     const product = await Product.findByPk(productId);
     cart.addProduct(product, { through: { quantity: 1 } });

@@ -22,15 +22,16 @@ const Cart = () => {
   };
 
   const products = () => {
+    console.log(cart);
     return cart.products.map((prod) => {
       return (
-        <li key={prod.productData.key}>
+        <li key={prod.id}>
           <p>
-            {prod.productData.title} ({prod.qty})
+            {prod.title} ({prod.cartItem.quantity})
           </p>
           <Button
             onClick={() => {
-              onDeleteHandler(prod.productData.id);
+              onDeleteHandler(prod.id);
             }}
           >
             Delete

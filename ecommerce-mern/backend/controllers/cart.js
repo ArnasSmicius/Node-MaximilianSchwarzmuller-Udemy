@@ -41,9 +41,11 @@ exports.getCart = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-exports.deleteCartProduct = (req, res, next) => {
+exports.deleteCartProduct = async (req, res, next) => {
   const prodId = req.body.productId;
-  const product = Product.findById(prodId);
-  Cart.deleteProduct(prodId, product.price);
+  const cart = await req.user.getCart();
+  const products = await cart.getProducts({ where: { id: prodId } });
+  const product = products[0];
+  await product.cartItem.destroy();
   res.sendStatus(200);
 };
